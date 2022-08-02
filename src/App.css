@@ -1,0 +1,40 @@
+.card-img-top {
+    margin-left: auto;
+    margin-right: auto;
+    width: 140px;
+    height: 440px;
+}
+
+.card {
+    width: 18rem;
+}
+
+.card-body {
+    height: 160px;
+    text-align: center;
+}
+
+.rock {
+    color: brown;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.beer-page {
+    display: flex;
+}
+
+.img-sg-beer {
+    height: 70%;
+}
+
+h1 {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.navbar {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
