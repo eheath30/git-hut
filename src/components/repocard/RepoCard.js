@@ -35,7 +35,7 @@ export default function RepoCard({ repo }) {
         <p className="card-text">
         Primary language: {r.language}
         </p>
-        <a hrefFor="#" class="btn btn-sm btn-dark">
+        <a href={r.html_url} target="_blank" class="btn btn-sm btn-dark">
           <i class="fa-brands fa-square-github"></i> Go to repo
         </a>
       </div>
