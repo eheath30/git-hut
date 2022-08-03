@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React from "react";
 import Form from "../../components/searchform/SearchForm";
 
@@ -54,19 +53,4 @@ export default function MainPage() {
       </div>
     </>
   );
-=======
-import React from 'react'
-import Form from "../../components/searchform/SearchForm"
-
-export default function MainPage() {
-  return (
-    <div className='container'>
-      <div className='row'>
-        <Form />
-      </div>
-      
-
-    </div>
-  )
->>>>>>> ced5c1c (Initial Changes)
 }
