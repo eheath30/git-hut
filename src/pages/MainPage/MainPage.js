@@ -1,15 +1,11 @@
 import React from "react";
-import { useSelector, useDispatch } from 'react-redux';
+
 import Form from "../../components/searchform/SearchForm";
 import UserCard from '../../components/userCard/UserCard'
 import RepoCard from '../../components/RepoCard/RepoCard'
 
 export default function MainPage() {
 
-  const result = useSelector(state => state.result);
-  const location = useSelector(state => state.location);
-  const loading = useSelector(state => state.loading);
-  const error = useSelector(state => state.error)
 
   return (
     <>

@@ -1,16 +1,13 @@
 import React, { useState } from "react";
-import { useDispatch } from 'react-redux'
-import { getResult } from '../../actions/index';
+import { getUser } from '../../actions/index';
 
 export default function SearchForm() {
 
     const [username, setUsername] = useState("")
 
-    const dispatch = useDispatch();
-
     const handleSearchSubmit = (e) => {
         e.preventDefault()
-        dispatch(getResult(username));
+        getUser(username)
     }
 
     const updateInput = (e) => {
