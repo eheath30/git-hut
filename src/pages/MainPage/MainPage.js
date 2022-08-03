@@ -65,8 +65,8 @@ export default function MainPage() {
       </div>
       <div className="container col-xxl-8 px-4 py-2">
         <div className="row flex-lg-row-reverse justify-content-center g-5 py-5">
-          <div className="col-10 col-sm-8 col-lg-4">
-            <section className="card pl-5 col-lg-8 mt-3 shadow border-info">
+          <div className="col-10 col-sm-8 col-lg-6">
+            <section className="card col-lg-8 mt-4 shadow border-info mx-auto">
               {renderUser()}
             </section>
           </div>
