@@ -1,19 +1,19 @@
-/* import axios from 'axios';
+import axios from 'axios';
 
 const loading = username => ({ type: 'LOADING', payload: username });
 
-const loadResult = ({ results: { user, repos } }) => ({
+const loadResult = ({ result: { user } }) => ({
     type: 'LOAD_RESULT',
-    payload: { user, repos }
+    payload: { user }
 });
 
 export const getResult = searchTerm => {
     return async dispatch => {
         dispatch(loading(searchTerm));
         try {
-            const longLat = await fetchLongLat(searchTerm);
-            const riseSet = await fetchSunriseSunset(longLat);
-            dispatch(loadResult(riseSet))
+            const username = await fetchUsername(searchTerm);
+            const userRepo = await fetchUserRepo(username);
+            dispatch(loadResult(userRepo))
         } catch (err) {
             console.warn(err.message);
             dispatch({ type: 'SET_ERROR', payload: err.message })
@@ -23,22 +23,21 @@ export const getResult = searchTerm => {
 
 
 // Helpers
-const fetchLongLat = async searchTerm => {
+const fetchUsername = async searchTerm => {
     try {
-        const { data } = await axios.get(`https://restcountries.com/v3.1/capital/${searchTerm}`)
-        return data[0].latlng;
+        const { data } = await axios.get(`https://api.github.com/users/${searchTerm}`)
+        return data
     } catch (err) {
-        if (data.status === 404) { throw Error('That\'s not a valid capital city!') }
-        throw new Error(err.message)
+
     }
 }
 
-const fetchSunriseSunset = async ([latt, longt]) => {
+const fetchUserRepo = async (user) => {
     try {
-        const { data } = await axios.get(`http://api.sunrise-sunset.org/json?lat=${latt}&lng=${longt}&date=today`);
-        return data;
+        const data = await axios.get(`https://api.github.com/users/${user}/repos`);
+        console.log(data)
+        return data
     } catch (err) {
-        throw new Error(err.message)
+
     }
 }
- */

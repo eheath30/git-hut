@@ -1,11 +1,15 @@
 import React from "react";
+import { useSelector, useDispatch } from 'react-redux';
 import Form from "../../components/searchform/SearchForm";
 import UserCard from '../../components/userCard/UserCard'
 import RepoCard from '../../components/RepoCard/RepoCard'
 
 export default function MainPage() {
 
-
+  const result = useSelector(state => state.result);
+  const location = useSelector(state => state.location);
+  const loading = useSelector(state => state.loading);
+  const error = useSelector(state => state.error)
 
   return (
     <>
@@ -18,7 +22,7 @@ export default function MainPage() {
         <div className="row flex-lg-row-reverse justify-content-center g-5 py-5">
           <div className="col-10 col-sm-8 col-lg-4">
             <div className="card pl-5 col-lg-8 mt-3">
-              <UserCard />
+              <UserCard/>
             </div>
           </div>
           <div className="col-lg-6 ">

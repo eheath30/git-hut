@@ -1,33 +1,30 @@
-import React, { useEffect, useState } from "react";
-
-
+import React, { useState } from "react";
+import { useDispatch } from 'react-redux'
+import { getResult } from '../../actions/index';
 
 export default function SearchForm() {
 
-    const [searchTerm, setSearchTerm] = useState("");
+    const [username, setUsername] = useState("")
 
-    function handleSearchTerm(e) {
-        let userName = e.target.value;
+    const dispatch = useDispatch();
 
-        // useEffect(() => {
-        //     dispatch(getUser("eheath30"));
-        // }, []);
-
-        setSearchTerm(userName);
+    const handleSearchSubmit = (e) => {
+        e.preventDefault()
+        dispatch(getResult(username));
     }
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     dispatch(getUser(searchTerm));
-    // };
+    const updateInput = (e) => {
+        const input = e.target.value
+        setUsername(input)
+    }
 
 
     return (
-        <form className='mt-3 row w-75 mx-auto' role="form" aria-label="form">
+        <form onSubmit={handleSearchSubmit} className='mt-3 row w-75 mx-auto' role="form" aria-label="form">
             <div className="row">
                 <label htmlFor="s_repo" className="col-sm-2 col-form-label">Search Repo:</label>
                 <div className="col-sm-10">
-                    <input type="text" className="form-control" id="s_repo" placeholder='Github username' onChange={handleSearchTerm} />
+                    <input onChange={updateInput} type="text" className="form-control" id="s_repo" placeholder='Github username' />
                 </div>
             </div>
         </form>
