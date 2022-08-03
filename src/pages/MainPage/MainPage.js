@@ -24,7 +24,6 @@ export default function MainPage() {
   useEffect(() => {
   axios.get(`https://api.github.com/users/${user}/repos`)
   .then(function (response) {
-
     let currentUserRepos = response.data
     setRepos(currentUserRepos)
   })
@@ -61,7 +60,7 @@ userInfo != undefined ?
             </section>
           </div>
           <div className="col-lg-6">
-            <div className="container mt-3">
+            <div className="-fluid mt-3">
               <section className="row row-cols-1">
                 {renderRepos()}
               </section>
