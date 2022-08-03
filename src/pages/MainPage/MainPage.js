@@ -1,7 +1,7 @@
 import React from "react";
 import Form from "../../components/searchform/SearchForm";
 import UserCard from '../../components/userCard/UserCard'
-import RepoCard from '../../components/RepoCard/repoCard'
+import RepoCard from '../../components/RepoCard/RepoCard'
 
 export default function MainPage() {
 
