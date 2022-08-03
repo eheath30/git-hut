@@ -1,8 +1,8 @@
 import axios from "axios";
-import React, {useState, useEffect, useContext} from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Form from "../../components/searchform/SearchForm";
 import UserCard from '../../components/userCard/UserCard'
-import RepoCard from '../../components/repocard/RepoCard'
+import RepoCard from '../../components/RepoCard/RepoCard'
 import { UserContext } from "../../UserContext"
 
 export default function MainPage() {
@@ -12,48 +12,48 @@ export default function MainPage() {
 
   useEffect(() => {
     axios.get(`https://api.github.com/users/${user}`)
-  .then(function (response) {
-    let currentUserInfo = response.data
-    setUserInfo(currentUserInfo);
-  })
-  .catch(function (error) {
-    console.log(error);
-  })
+      .then(function (response) {
+        let currentUserInfo = response.data
+        setUserInfo(currentUserInfo);
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
   }, [user]);
 
   useEffect(() => {
-  axios.get(`https://api.github.com/users/${user}/repos`)
-  .then(function (response) {
+    axios.get(`https://api.github.com/users/${user}/repos`)
+      .then(function (response) {
 
-    let currentUserRepos = response.data
-    setRepos(currentUserRepos)
-  })
-  .catch(function (error) {
-    console.log(error);
-  })
+        let currentUserRepos = response.data
+        setRepos(currentUserRepos)
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
   }, [user]);
 
 
-const renderRepos = () =>
-repos != undefined ?
-repos.map((repo) => (
-<RepoCard key={repo.name} repo={repo}/>
-))
-: null
+  const renderRepos = () =>
+    repos != undefined ?
+      repos.map((repo) => (
+        <RepoCard key={repo.name} repo={repo} />
+      ))
+      : null
 
-const renderUser = () =>
-userInfo != undefined ?
-<UserCard key={userInfo.name} userInfo={userInfo}/>
-: null
+  const renderUser = () =>
+    userInfo != undefined ?
+      <UserCard key={userInfo.name} userInfo={userInfo} />
+      : null
 
   return (
     <section key={user.name} >
-      <div className="container pt-4">
+      <div className="container pt-4 mt-3">
         <div className="row">
           <Form />
         </div>
       </div>
-      <div className="container col-xxl-8 px-4 py-2">
+      <div className="container col-xxl-8 px-4 py-5">
         <div className="row flex-lg-row-reverse justify-content-center g-5 py-5">
           <div className="col-10 col-sm-8 col-lg-4">
             <section className="card pl-5 col-lg-8 mt-3 shadow border-info">
