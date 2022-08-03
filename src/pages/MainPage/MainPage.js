@@ -12,7 +12,6 @@ export default function MainPage() {
       <div class="container col-xxl-8 px-4 py-3">
         <div class="row flex-lg-row-reverse justify-content-center g-5 py-5">
           <div class="col-10 col-sm-8 col-lg-4">
-            {/* <UserCard /> */}
             <div class="card pl-5 col-lg-8 mt-3">"aside box" xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</div>
           </div>
           <div class="col-lg-6 ">
