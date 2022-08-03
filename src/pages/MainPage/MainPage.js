@@ -9,7 +9,7 @@ export default function MainPage() {
   const [user, setUser] = useContext(UserContext);
   const [repos, setRepos] = useState();
   const [userInfo, setUserInfo] = useState();
-
+  const [searchTerm, setSearchTerm] = useState("");
   useEffect(() => {
     axios
       .get(`https://api.github.com/users/${user}`)
@@ -36,7 +36,17 @@ export default function MainPage() {
 
   const renderRepos = () =>
     repos !== undefined
-      ? repos.map((repo) => <RepoCard key={repo.name} repo={repo} />)
+      ? repos
+          .filter((repo) => {
+            if (searchTerm === "") {
+              return repo;
+            } else if (
+              repo.name.toLowerCase().includes(searchTerm.toLowerCase())
+            ) {
+              return repo;
+            }
+          })
+          .map((repo) => <RepoCard key={repo.name} repo={repo} />)
       : null;
 
   const renderUser = () =>
@@ -64,13 +74,17 @@ export default function MainPage() {
             <div className="-fluid mt-3">
               <div class="input-group">
                 <div class="form-outline mx-auto my-3 d-flex">
-                  <input type="search" id="form1" class="form-control mx-2" placeholder="Search Repos"/>
-                  <button type="button" class="btn btn-dark mx-auto my-auto">
-                  <i class="fas fa-search"></i>
-                </button>
-
+                  <input
+                    type="search"
+                    id="form1"
+                    class="form-control mx-2"
+                    placeholder="Search Repos"
+                    onChange={(event) => {
+                      setSearchTerm(event.target.value);
+                    }}
+                  />
+                  <i class="fa-solid fa-folder-tree my-auto folderIcon"></i>
                 </div>
-
               </div>
 
               <section className="row row-cols-1">{renderRepos()}</section>
