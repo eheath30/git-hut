@@ -4,11 +4,16 @@ import Form from "../../components/searchform/SearchForm";
 import UserCard from '../../components/userCard/UserCard'
 import RepoCard from '../../components/RepoCard/RepoCard'
 import { UserContext } from "../../UserContext"
+import Pagination from '../../components/Pagination/pagination';
 
 export default function MainPage() {
   const [user, setUser] = useContext(UserContext);
   const [repos, setRepos] = useState();
   const [userInfo, setUserInfo] = useState();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(10);
+
+
 
   useEffect(() => {
     axios.get(`https://api.github.com/users/${user}`)
@@ -24,7 +29,6 @@ export default function MainPage() {
   useEffect(() => {
     axios.get(`https://api.github.com/users/${user}/repos`)
       .then(function (response) {
-
         let currentUserRepos = response.data
         setRepos(currentUserRepos)
       })
@@ -32,6 +36,8 @@ export default function MainPage() {
         console.log(error);
       })
   }, [user]);
+
+
 
 
   const renderRepos = () =>
@@ -45,6 +51,11 @@ export default function MainPage() {
     userInfo != undefined ?
       <UserCard key={userInfo.name} userInfo={userInfo} />
       : null
+
+
+  const renderPagination = () => {
+    console.log(repos)
+  }
 
   return (
     <section key={user.name} >
@@ -61,13 +72,16 @@ export default function MainPage() {
             </section>
           </div>
           <div className="col-lg-6">
-            <div className="container mt-3">
+            <div className="-fluid mt-3">
               <section className="row row-cols-1">
                 {renderRepos()}
               </section>
             </div>
           </div>
         </div>
+      </div>
+      <div>
+        {renderPagination()}
       </div>
     </section>
   );
