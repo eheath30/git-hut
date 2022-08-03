@@ -5,7 +5,8 @@ const Header = () => {
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Fifth navbar example">
     <div className="container-fluid">
-      <a className="navbar-brand" href="#"><i className="fa-brands fa-github github-mainpage-icon my-1 mx-2"></i></a>
+      <div className="navbar-brand"><i className="fa-brands fa-github github-mainpage-icon mx-2"></i></div>
+      <h2 className="gitHutText text-light my-auto me-5">Git Hut</h2>
       <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
       </button>

@@ -6,7 +6,7 @@ const [user, setUser] = useState(userInfo)
   return (
     <>
     <div className="card">
-  <img src={user.avatar_url} className="card-img-top" alt="..." />
+  <img src={user.avatar_url} className="card-img-top" alt={user.avatar_url} />
   <div className="card-body">
     <h5 className="card-title">{user.name === null ? user.login: user.name}</h5>
     <h6 className="card-title">ID: {user.id}</h6>
