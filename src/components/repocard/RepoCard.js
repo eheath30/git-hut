@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-export default function RepoCard() {
+export default function RepoCard({repo}) {
+const [r, setR] = useState(repo)
+console.log(r)
     return (
         <div className="col mt-3">
-            <div className="card">
+            <div className="card shadow border-success">
                 <div className="card-body">
-                    This is some text within a card body 1.
+                    {r.name}
                 </div>
             </div>
         </div>
