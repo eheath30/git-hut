@@ -9,6 +9,8 @@ export default function SearchForm() {
                     <input type="text" className="form-control" id="s_repo" placeholder='Github username'/>
                 </div>
             </div>
+            <div></div>
         </form>
+        
     )
 }
