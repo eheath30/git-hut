@@ -46,7 +46,7 @@ userInfo != undefined ?
 : null
 
   return (
-    <section key={user.name} >
+    <section key={user.name}>
       <div className="container pt-4">
         <div className="row mx-md-5">
           <Form />
