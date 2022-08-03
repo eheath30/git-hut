@@ -3,10 +3,10 @@ import React from "react";
 
 const Header = () => {
     return (
-        <div className="navigation">
-            <nav className="navbar navbar-expand navbar-dark bg-dark">
-                <div className="container">Header</div>
-            </nav>
+        <div className="">
+            <header className="py-4 text-center navbar-expand navbar-dark bg-dark">
+                <p className="text-white">HEADER</p>
+            </header>
         </div>
     );
 }
