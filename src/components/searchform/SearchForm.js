@@ -1,27 +1,28 @@
-import React, { useState } from "react";
-import { getUser } from '../../actions/index';
+import React, { useEffect, useState, useContext } from "react";
+import { UserContext } from "../../UserContext";
 
 export default function SearchForm() {
+    const [searchTerm, setSearchTerm] = useState("");
+    const [user, setUser] = useContext(UserContext);
 
-    const [username, setUsername] = useState("")
 
-    const handleSearchSubmit = (e) => {
-        e.preventDefault()
-        getUser(username)
+    function handleSearchTerm(e) {
+        let userName = e.target.value;
+        setSearchTerm(userName);
     }
 
-    const updateInput = (e) => {
-        const input = e.target.value
-        setUsername(input)
-    }
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setUser(searchTerm);
+    };
 
 
     return (
-        <form onSubmit={handleSearchSubmit} className='mt-3 row w-75 mx-auto' role="form" aria-label="form">
+        <form className='mt-3 row w-75 mx-auto' role="form" aria-label="form" onSubmit={handleSubmit}>
             <div className="row">
                 <label htmlFor="s_repo" className="col-sm-2 col-form-label">Search Repo:</label>
-                <div className="col-sm-10">
-                    <input onChange={updateInput} type="text" className="form-control" id="s_repo" placeholder='Github username' />
+                <div className="col-sm-10 input-group-lg my-auto">
+                    <input type="text" className="form-control " id="s_repo" placeholder='Github username' onChange={handleSearchTerm} />
                 </div>
             </div>
         </form>
