@@ -5,7 +5,6 @@ export default function SearchForm(props) {
     const [searchTerm, setSearchTerm] = useState("");
     const [user, setUser] = useContext(UserContext);
 
-
     function handleSearchTerm(e) {
         let userName = e.target.value;
         setSearchTerm(userName);

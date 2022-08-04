@@ -1,6 +1,5 @@
 import React, { createContext, useState } from 'react';
 
-
 let userData = "";
 if (Math.random() < 0.5) {
     userData = 'eheath30'
@@ -17,5 +16,4 @@ export const UserProvider = (props) => {
             {props.children}
         </UserContext.Provider>
     )
-
 }
