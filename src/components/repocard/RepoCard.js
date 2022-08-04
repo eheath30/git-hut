@@ -33,8 +33,8 @@ function toggleFavorite(e) {
           <i
           className={
             saved
-              ? `fa-solid fa-heart-circle-plus mx-1`
-              : `fa-solid fa-heart-circle-minus mx-1`
+              ? `fa-solid fa-heart-circle-minus mx-1`
+              : `fa-solid fa-heart-circle-plus mx-1`
           }
           id="favourited"
           onClick={toggleFavorite}
