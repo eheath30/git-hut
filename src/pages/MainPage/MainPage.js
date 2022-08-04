@@ -14,7 +14,6 @@ export default function MainPage() {
   const [reposPerPage] = useState(5);
   const [searchTerm, setSearchTerm] = useState("");
 
-
   useEffect(() => {
     const fetchUser = async () => {
       const userData = await axios.get(`https://api.github.com/users/${user}`)
@@ -39,15 +38,7 @@ export default function MainPage() {
 
   const renderRepos = () =>
     repos != undefined ?
-      currentRepos.filter((repo) => {
-        if (searchTerm === "") {
-          return repo;
-        } else if (
-          repo.name.toLowerCase().includes(searchTerm.toLowerCase())
-        ) {
-          return repo;
-        }
-      }).map((repo) => (
+      currentRepos.map((repo) => (
         <RepoCard key={repo.name} repo={repo} />
       ))
       : null
@@ -56,6 +47,19 @@ export default function MainPage() {
     userInfo != undefined ?
       <UserCard key={userInfo.name} userInfo={userInfo} />
       : null
+
+  const filteredRepos = () =>
+    repos.filter((repo) => {
+      if (searchTerm === "") {
+        return repo;
+      } else if (
+        repo.name.toLowerCase().includes(searchTerm.toLowerCase())
+      ) {
+        return repo;
+      }
+    }).map((repo) => (
+      <RepoCard key={repo.name} repo={repo} />
+    ))
 
   return (
     <section key={user.name}>
@@ -75,7 +79,7 @@ export default function MainPage() {
           </div>
           <div className="col-lg-6">
             <div className="-fluid mt-3">
-            <div class="input-group">
+              <div class="input-group">
                 <div class="form-outline mx-auto my-3 d-flex">
                   <input
                     type="search"
@@ -90,13 +94,15 @@ export default function MainPage() {
                 </div>
               </div>
               <section className="row row-cols-1">
-                {renderRepos()}
+                {searchTerm ? filteredRepos() : renderRepos()}
               </section>
-              <div className="d-flex justify-content-center">
-                <div className="-fluid mt-3">
-                  <Pagination reposPerPage={reposPerPage} totalRepos={repos.length} paginate={paginate} />
+              {searchTerm === "" &&
+                <div className="pagination d-flex justify-content-center">
+                  <div className="-fluid mt-3">
+                    <Pagination reposPerPage={reposPerPage} totalRepos={repos.length} paginate={paginate} />
+                  </div>
                 </div>
-              </div>
+              }
             </div>
           </div>
         </div>
