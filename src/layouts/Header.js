@@ -25,7 +25,7 @@ const Header = () => {
               <NavLink className="nav-link" to="/favourites">Favourites</NavLink>
             </li>
             <li className="nav-item mx-md-2">
-              <a className="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Coming soon!</a>
+              <a className="nav-link disabled" href="#" tabIndex="-1" aria-disabled="true">Coming soon!</a>
             </li>
             <li className="nav-item dropdown mx-md-2">
               <a className="nav-link dropdown-toggle" href="#" id="dropdown05" data-bs-toggle="dropdown" aria-expanded="false">About</a>

@@ -1,16 +1,47 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { add, remove } from "../../reducers/favouritesReducer"
 
 export default function RepoCard({ repo }) {
   const [r, setR] = useState(repo);
-
   let createDate = r.created_at.slice(0, 10);
   let updateDate = r.updated_at.slice(0, 10);
+
+  const saved = useSelector((state) =>
+  state.favourites.saved.some((card) => card.name === r.name)
+);
+const dispatch = useDispatch();
+
+function toggleFavorite(e) {
+  e.preventDefault();
+  if (!saved) {
+    e.target.className = `fa-solid fa-heart-circle-plus mx-1`;
+    dispatch(add(r));
+    console.log('byebye add dispatch')
+  } else {
+    e.target.className = `fa-solid fa-heart-circle-minus mx-1`;
+    dispatch(remove(r));
+    console.log('byebye remove dispatch')
+  }
+}
 
   return (
     <section className="card text-center mb-3 border-success px-0 shadow-sm">
       <div className="card-header">
         <div className="d-flex flex-row justify-content-between">
-        <div className="d-flex my-auto fontAwesomeLarger"><i class="fa-solid fa-heart-circle-minus"></i></div>
+        <div className="d-flex my-auto fontAwesomeLarger">
+          <i
+          className={
+            saved
+              ? `fa-solid fa-heart-circle-plus mx-1`
+              : `fa-solid fa-heart-circle-minus mx-1`
+          }
+          id="favourited"
+          onClick={toggleFavorite}
+        >
+
+        </i>
+        </div>
           <div className="d-flex border rounded px-sm-1 shadow-sm">Size: {r.size}kb</div>
           <div className="d-flex">
             <div className="d-flex mx-1">
