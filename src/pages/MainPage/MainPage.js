@@ -8,11 +8,14 @@ import { UserContext } from "../../UserContext"
 
 export default function MainPage() {
   const [user, setUser] = useContext(UserContext);
+  const [userHistory, setUserHistory] = useState([])
   const [repos, setRepos] = useState([]);
   const [userInfo, setUserInfo] = useState();
   const [currentPage, setCurrentPage] = useState(1);
   const [reposPerPage] = useState(5);
   const [searchTerm, setSearchTerm] = useState("");
+
+  localStorage.setItem('UserHistory', JSON.stringify(userHistory));
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -70,7 +73,7 @@ export default function MainPage() {
       <div className="container pt-4">
         <div className="mx-md-5">
           <div className="row mx-md-5 ">
-            <Form onSubmit={clearInput} />
+            <Form onSubmit={clearInput} setUserHistory={setUserHistory} userHistory={userHistory} />
           </div>
         </div>
       </div>

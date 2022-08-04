@@ -5,6 +5,11 @@ export default function SearchForm(props) {
     const [searchTerm, setSearchTerm] = useState("");
     const [user, setUser] = useContext(UserContext);
 
+    const today = new Date();
+    const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    const dateTime = date + ' ' + time;
+
     function handleSearchTerm(e) {
         let userName = e.target.value;
         setSearchTerm(userName);
@@ -13,7 +18,8 @@ export default function SearchForm(props) {
     const handleSubmit = (e) => {
         e.preventDefault();
         setUser(searchTerm);
-        props.onSubmit('')
+        props.onSubmit('');
+        props.setUserHistory([...props.userHistory, { time: dateTime, userH: searchTerm }])
     };
 
 
