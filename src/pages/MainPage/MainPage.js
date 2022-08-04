@@ -11,7 +11,7 @@ export default function MainPage() {
   const [repos, setRepos] = useState([]);
   const [userInfo, setUserInfo] = useState();
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(5);
+  const [reposPerPage] = useState(5);
 
 
 
@@ -31,16 +31,16 @@ export default function MainPage() {
     fetchRepos()
   }, [user]);
 
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = repos.slice(indexOfFirstPost, indexOfLastPost);
+  const indexOfLastRepo = currentPage * reposPerPage;
+  const indexOfFirstRepo = indexOfLastRepo - reposPerPage;
+  const currentRepos = repos.slice(indexOfFirstRepo, indexOfLastRepo);
 
   const paginate = pageNumber => setCurrentPage(pageNumber);
 
 
   const renderRepos = () =>
     repos != undefined ?
-      currentPosts.map((repo) => (
+      currentRepos.map((repo) => (
         <RepoCard key={repo.name} repo={repo} />
       ))
       : null
@@ -73,7 +73,7 @@ export default function MainPage() {
               </section>
               <div className="d-flex justify-content-center">
                 <div className="-fluid mt-3">
-                  <Pagination postsPerPage={postsPerPage} totalPosts={repos.length} paginate={paginate} />
+                  <Pagination reposPerPage={reposPerPage} totalRepos={repos.length} paginate={paginate} />
                 </div>
               </div>
             </div>
