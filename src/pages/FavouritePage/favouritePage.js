@@ -49,7 +49,7 @@ export default function FavouritePage() {
 
 
   return (
-    <div className="col-lg-6 mx-auto px-4 py-2">
+    <div className="col-lg-6 col-md-8 col-sm-10 mx-auto px-4 py-2">
       <h1 className="display-3 text-center mx-auto my-2">Favourite Repos...</h1>
             <div className="-fluid mt-3">
               <div className="input-group">
