@@ -101,7 +101,7 @@ export default function MainPage() {
               </section>
               {searchTerm === "" &&
                 <div className="pagination d-flex justify-content-center">
-                  <div className="-fluid mt-3">
+                  <div className="container-fluid mt-3">
                     <Pagination reposPerPage={reposPerPage} totalRepos={repos.length} paginate={paginate} />
                   </div>
                 </div>
