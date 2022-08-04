@@ -36,6 +36,10 @@ export default function MainPage() {
 
   const paginate = pageNumber => setCurrentPage(pageNumber);
 
+  const clearInput = (clear) => {
+    setSearchTerm(clear)
+  }
+
   const renderRepos = () =>
     repos != undefined ?
       currentRepos.map((repo) => (
@@ -66,7 +70,7 @@ export default function MainPage() {
       <div className="container pt-4">
         <div className="mx-md-5">
           <div className="row mx-md-5 ">
-            <Form />
+            <Form onSubmit={clearInput} />
           </div>
         </div>
       </div>
@@ -86,6 +90,7 @@ export default function MainPage() {
                     id="form1"
                     class="form-control mx-2"
                     placeholder="Search Repos"
+                    value={searchTerm}
                     onChange={(event) => {
                       setSearchTerm(event.target.value);
                     }}

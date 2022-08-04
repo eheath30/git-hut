@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { UserContext } from "../../UserContext";
 
-export default function SearchForm() {
+export default function SearchForm(props) {
     const [searchTerm, setSearchTerm] = useState("");
     const [user, setUser] = useContext(UserContext);
 
@@ -14,6 +14,7 @@ export default function SearchForm() {
     const handleSubmit = (e) => {
         e.preventDefault();
         setUser(searchTerm);
+        props.onSubmit('')
     };
 
 
@@ -26,7 +27,7 @@ export default function SearchForm() {
 
                 </div>
                 <div className="col-sm-1 align-self-end my-auto">
-                <button className="btn btn-dark folderIcon my-2"><i class="fa-solid fa-magnifying-glass-arrow-right"></i></button>
+                    <button className="btn btn-dark folderIcon my-2"><i class="fa-solid fa-magnifying-glass-arrow-right"></i></button>
                 </div>
             </div>
         </form>
