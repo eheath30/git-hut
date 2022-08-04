@@ -56,7 +56,9 @@ export default function MainPage() {
     repos.filter((repo) => {
       if (searchTerm === "") {
         return repo;
-      } else if (repo.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+      } else if (
+        repo.name.toLowerCase().includes(searchTerm.toLowerCase())
+      ) {
         return repo;
       }
     }).map((repo) => (
@@ -81,19 +83,19 @@ export default function MainPage() {
           </div>
           <div className="col-lg-6">
             <div className="-fluid mt-3">
-              <div class="input-group">
-                <div class="form-outline mx-auto my-3 d-flex">
+              <div className="input-group">
+                <div className="form-outline mx-auto my-3 d-flex">
                   <input
                     type="search"
                     id="form1"
-                    class="form-control mx-2"
+                    className="form-control mx-2"
                     placeholder="Search Repos"
                     value={searchTerm}
                     onChange={(event) => {
                       setSearchTerm(event.target.value);
                     }}
                   />
-                  <i class="fa-solid fa-folder-tree my-auto folderIcon"></i>
+                  <i className="fa-solid fa-folder-tree my-auto fontAwesomeLarger"></i>
                 </div>
               </div>
               <section className="row row-cols-1">

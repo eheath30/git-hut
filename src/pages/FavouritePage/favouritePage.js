@@ -1,58 +1,83 @@
-import React from 'react'
+import React, {useState} from 'react'
+import { useSelector } from "react-redux";
+import RepoCard from '../../components/repocard/RepoCard'
+import Pagination from '../../components/Pagination/pagination'
 
 export default function FavouritePage() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [reposPerPage] = useState(5);
+  const [searchTerm, setSearchTerm] = useState("");
 
+
+  const favouritesList = useSelector((state) => state.favourites.saved);
+  console.log(favouritesList);
+
+
+
+  const indexOfLastRepo = currentPage * reposPerPage;
+  const indexOfFirstRepo = indexOfLastRepo - reposPerPage;
+  const currentRepos = favouritesList.slice(indexOfFirstRepo, indexOfLastRepo);
+
+  const paginate = pageNumber => setCurrentPage(pageNumber);
+
+  const clearInput = (clear) => {
+    setSearchTerm(clear)
+  }
+
+
+
+  const filteredRepos = () =>
+  favouritesList.filter((repo) => {
+      if (searchTerm === "") {
+        return repo;
+      } else if (
+        repo.name.toLowerCase().includes(searchTerm.toLowerCase())
+      ) {
+        return repo;
+      }
+    }).map((repo) => (
+      <RepoCard key={repo.name} repo={repo} />
+    ))
+
+
+  const renderRepos = () =>
+  favouritesList != undefined ?
+    currentRepos.map((repo) => (
+      <RepoCard key={repo.name} repo={repo} />
+    ))
+    : null
 
 
   return (
-    <section className='container justify-content-center mx-auto'>
-      <h1 className='display-3 text-center my-4'>FAVOURITE COMPONENT</h1>
-      <div className="card text-center mb-3 border-success px-0 shadow-sm">
-        <div className="card-header">
-          <div className="d-flex flex-row justify-content-between">
-            <div className="d-flex">
-              <i className="fa-solid fa-star my-auto mx-1"></i>
-              <h5 className="my-auto mx-1">Stargazers: </h5>
+    <div className="col-lg-6 col-md-8 col-sm-10 mx-auto px-4 py-2">
+      <h1 className="display-3 text-center mx-auto my-2">Favourite Repos...</h1>
+            <div className="-fluid mt-3">
+              <div className="input-group">
+                <div className="form-outline mx-auto my-3 d-flex">
+                  <input
+                    type="search"
+                    id="form1"
+                    className="form-control mx-2"
+                    placeholder="Search Repos"
+                    value={searchTerm}
+                    onChange={(event) => {
+                      setSearchTerm(event.target.value);
+                    }}
+                  />
+                  <i className="fa-solid fa-folder-tree my-auto fontAwesomeLarger"></i>
+                </div>
+              </div>
+              <section className="row row-cols-1">
+                {searchTerm ? filteredRepos() : renderRepos()}
+              </section>
+              {searchTerm === "" &&
+                <div className="pagination d-flex justify-content-center">
+                  <div className="-fluid mt-3 mb-5">
+                    <Pagination reposPerPage={reposPerPage} totalRepos={favouritesList.length} paginate={paginate} />
+                  </div>
+                </div>
+              }
             </div>
-            <div className="d-flex">Size: kb</div>
-            <div className="d-flex">
-              <div className="d-flex mx-1">
-                <h5 className="my-auto mx-1 my-auto"></h5>
-                <i className="fa-solid fa-triangle-exclamation my-auto"></i>
-              </div>
-              <div className="d-flex mx-1">
-                <h5 className="my-auto mx-1 my-auto"></h5>
-                <i className="fa-solid fa-eye my-auto"></i>
-              </div>
-              <div className="d-flex mx-1">
-                <h5 className="my-auto mx-1 my-auto"></h5>
-                <i className="fa-solid fa-code-fork my-auto"></i>
-              </div>
-            </div>
           </div>
-        </div>
-        <div className="card-body">
-          <h5 className="card-title"></h5>
-          <p className="card-text">
-
-            "Alt description is here to save the day because the repo owner is lazy."
-          </p>
-          <p className="card-text my-1">Primary language:</p>
-          <p className="card-text">Default branch:</p>
-
-          <div className="d-flex justify-content-around">
-            <a target="_blank" className="btn btn-sm btn-dark">
-              <i className="fa-brands fa-square-github"></i> Go to repo
-            </a>
-          </div>
-        </div>
-        <div className="card-footer text-muted">
-          <div className="d-flex justify-content-around">
-            <span>Created at:</span>
-            <span>Last Updated: </span>
-          </div>
-        </div>
-      </div>
-    </section>
   )
 }

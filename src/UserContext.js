@@ -7,6 +7,7 @@ if (Math.random() < 0.5) {
     userData = 'allanstocco'
 }
 
+
 export const UserContext = createContext();
 
 export const UserProvider = (props) => {
