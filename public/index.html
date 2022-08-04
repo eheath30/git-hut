@@ -21,15 +21,27 @@
   </head>
 
   <body>
-    <noscript></noscript>
+    <div class="parent"> </div>
+    <div
+      class="child spinner-border preloader mx-auto my-auto"
+      style="width: 3rem; height: 3rem"
+      role="status"
+      alt="loading"
+    >
+    </div>
+    <noscript>"Oh my dayz son, no script? Are u for real fam."</noscript>
 
     <div id="root"></div>
 
     <script>
+      window.onload = function () {
+        document.querySelector(".preloader").style.display = "none";
+      };
       window.onbeforeunload = function () {
         return "Are you sure?";
       };
     </script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
