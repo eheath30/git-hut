@@ -56,9 +56,7 @@ export default function MainPage() {
     repos.filter((repo) => {
       if (searchTerm === "") {
         return repo;
-      } else if (
-        repo.name.toLowerCase().includes(searchTerm.toLowerCase())
-      ) {
+      } else if (repo.name.toLowerCase().includes(searchTerm.toLowerCase())) {
         return repo;
       }
     }).map((repo) => (
