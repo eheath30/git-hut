@@ -1,7 +1,14 @@
 import React, {createContext, useState} from 'react';
 
 
-    const userData = "Crowy92";
+let userData = "";
+if(Math.random() < 0.5) {
+    userData = 'eheath30'
+} else {
+    userData = 'allanstocco'
+}
+
+
 
     export const UserContext = createContext();
 

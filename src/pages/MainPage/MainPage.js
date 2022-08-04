@@ -51,16 +51,18 @@ export default function MainPage() {
       : null
 
   return (
-    <section key={user.name} >
+    <section key={user.name}>
       <div className="container pt-4">
-        <div className="row mx-md-5">
-          <Form />
+        <div className="mx-md-5">
+          <div className="row mx-md-5 ">
+            <Form />
+          </div>
         </div>
       </div>
       <div className="container col-xxl-8 px-4 py-5">
         <div className="row flex-lg-row-reverse justify-content-center g-5 py-5">
-          <div className="col-10 col-sm-8 col-lg-4">
-            <section className="card pl-5 col-lg-8 mt-3 shadow border-info">
+          <div className="col-10 col-sm-8 col-lg-6">
+            <section className="card col-lg-8 mt-4 shadow border-info mx-auto">
               {renderUser()}
             </section>
           </div>
