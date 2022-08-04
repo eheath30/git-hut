@@ -5,3 +5,11 @@
 .head-colour {
     background-color: #2d333b;
 }
+
+.searchForm {
+    width: 100px;
+}
+
+.page-link {
+    cursor: pointer;
+}

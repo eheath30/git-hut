@@ -3,46 +3,44 @@ import React, { useState, useEffect, useContext } from "react";
 import Form from "../../components/searchform/SearchForm";
 import UserCard from '../../components/userCard/UserCard'
 import RepoCard from '../../components/RepoCard/RepoCard'
+import Pagination from '../../components/Pagination/pagination'
 import { UserContext } from "../../UserContext"
-import Pagination from '../../components/Pagination/pagination';
 
 export default function MainPage() {
   const [user, setUser] = useContext(UserContext);
-  const [repos, setRepos] = useState();
+  const [repos, setRepos] = useState([]);
   const [userInfo, setUserInfo] = useState();
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(10);
+  const [postsPerPage] = useState(5);
 
 
 
   useEffect(() => {
-    axios.get(`https://api.github.com/users/${user}`)
-      .then(function (response) {
-        let currentUserInfo = response.data
-        setUserInfo(currentUserInfo);
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
+    const fetchUser = async () => {
+      const userData = await axios.get(`https://api.github.com/users/${user}`)
+      setUserInfo(userData.data)
+    }
+    fetchUser()
   }, [user]);
 
   useEffect(() => {
-    axios.get(`https://api.github.com/users/${user}/repos`)
-      .then(function (response) {
-        let currentUserRepos = response.data
-        setRepos(currentUserRepos)
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
+    const fetchRepos = async () => {
+      const repoData = await axios.get(`https://api.github.com/users/${user}/repos`)
+      setRepos(repoData.data)
+    }
+    fetchRepos()
   }, [user]);
 
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = repos.slice(indexOfFirstPost, indexOfLastPost);
 
+  const paginate = pageNumber => setCurrentPage(pageNumber);
 
 
   const renderRepos = () =>
     repos != undefined ?
-      repos.map((repo) => (
+      currentPosts.map((repo) => (
         <RepoCard key={repo.name} repo={repo} />
       ))
       : null
@@ -52,15 +50,10 @@ export default function MainPage() {
       <UserCard key={userInfo.name} userInfo={userInfo} />
       : null
 
-
-  const renderPagination = () => {
-    console.log(repos)
-  }
-
   return (
     <section key={user.name} >
-      <div className="container pt-4 mt-3">
-        <div className="row">
+      <div className="container pt-4">
+        <div className="row mx-md-5">
           <Form />
         </div>
       </div>
@@ -76,12 +69,14 @@ export default function MainPage() {
               <section className="row row-cols-1">
                 {renderRepos()}
               </section>
+              <div className="d-flex justify-content-center">
+                <div className="-fluid mt-3">
+                  <Pagination postsPerPage={postsPerPage} totalPosts={repos.length} paginate={paginate} />
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div>
-        {renderPagination()}
       </div>
     </section>
   );
