@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect, useContext } from "react";
 import Form from "../../components/searchform/SearchForm";
 import UserCard from '../../components/userCard/UserCard'
-import RepoCard from '../../components/repocard/RepoCard'
+import RepoCard from '../../components/repoCard/RepoCard'
 import Pagination from '../../components/Pagination/pagination'
 import { UserContext } from "../../UserContext"
 
@@ -95,7 +95,7 @@ export default function MainPage() {
                       setSearchTerm(event.target.value);
                     }}
                   />
-                  <i class="fa-solid fa-folder-tree my-auto folderIcon"></i>
+                  <i class="fa-solid fa-folder-tree my-auto fontAwesomeLarger"></i>
                 </div>
               </div>
               <section className="row row-cols-1">
