@@ -12,7 +12,7 @@ export default function MainPage() {
   const [userInfo, setUserInfo] = useState();
   const [currentPage, setCurrentPage] = useState(1);
   const [reposPerPage] = useState(5);
-
+  const [searchTerm, setSearchTerm] = useState("");
 
 
   useEffect(() => {
@@ -37,10 +37,17 @@ export default function MainPage() {
 
   const paginate = pageNumber => setCurrentPage(pageNumber);
 
-
   const renderRepos = () =>
     repos != undefined ?
-      currentRepos.map((repo) => (
+      currentRepos.filter((repo) => {
+        if (searchTerm === "") {
+          return repo;
+        } else if (
+          repo.name.toLowerCase().includes(searchTerm.toLowerCase())
+        ) {
+          return repo;
+        }
+      }).map((repo) => (
         <RepoCard key={repo.name} repo={repo} />
       ))
       : null
@@ -68,6 +75,20 @@ export default function MainPage() {
           </div>
           <div className="col-lg-6">
             <div className="-fluid mt-3">
+            <div class="input-group">
+                <div class="form-outline mx-auto my-3 d-flex">
+                  <input
+                    type="search"
+                    id="form1"
+                    class="form-control mx-2"
+                    placeholder="Search Repos"
+                    onChange={(event) => {
+                      setSearchTerm(event.target.value);
+                    }}
+                  />
+                  <i class="fa-solid fa-folder-tree my-auto folderIcon"></i>
+                </div>
+              </div>
               <section className="row row-cols-1">
                 {renderRepos()}
               </section>
