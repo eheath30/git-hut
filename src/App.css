@@ -1,4 +1,4 @@
-.foot-colour{
+.foot-colour {
     background-color: #2d333b;
 }
 
@@ -10,8 +10,17 @@
     width: 100px;
 }
 
+.page-link {
+    cursor: pointer;
+
+}
+
 .github-mainpage-icon {
-    font-size: xx-large;
+    font-size: 200%;
+}
+
+.gitHutText {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
 }
 
 .footerLogo {

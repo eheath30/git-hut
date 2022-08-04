@@ -25,7 +25,7 @@ export default function SearchForm() {
                     <input type="text" className="form-control" id="s_repo" placeholder='Github username' onChange={handleSearchTerm} />
 
                 </div>
-                <div className="col-sm-1 align-self-end">
+                <div className="col-sm-1 align-self-end my-auto">
                 <button className="btn btn-dark folderIcon my-2"><i class="fa-solid fa-magnifying-glass-arrow-right"></i></button>
                 </div>
             </div>
