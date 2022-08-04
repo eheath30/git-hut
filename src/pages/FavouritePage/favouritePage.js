@@ -72,7 +72,7 @@ export default function FavouritePage() {
               </section>
               {searchTerm === "" &&
                 <div className="pagination d-flex justify-content-center">
-                  <div className="container-fluid mx-3">
+                  <div className="-fluid mt-3 mb-5">
                     <Pagination reposPerPage={reposPerPage} totalRepos={favouritesList.length} paginate={paginate} />
                   </div>
                 </div>

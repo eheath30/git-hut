@@ -56,7 +56,9 @@ export default function MainPage() {
     repos.filter((repo) => {
       if (searchTerm === "") {
         return repo;
-      } else if (repo.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+      } else if (
+        repo.name.toLowerCase().includes(searchTerm.toLowerCase())
+      ) {
         return repo;
       }
     }).map((repo) => (
@@ -101,7 +103,7 @@ export default function MainPage() {
               </section>
               {searchTerm === "" &&
                 <div className="pagination d-flex justify-content-center">
-                  <div className="container-fluid my-3">
+                  <div className="-fluid mt-3">
                     <Pagination reposPerPage={reposPerPage} totalRepos={repos.length} paginate={paginate} />
                   </div>
                 </div>

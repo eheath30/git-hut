@@ -29,15 +29,15 @@ function toggleFavorite(e) {
     <section className="card text-center mb-3 border-success px-0 shadow-sm">
       <div className="card-header">
         <div className="d-flex flex-row justify-content-between">
-        <div className="d-flex my-auto fontAwesomeLarger">
+        <div className="d-flex my-auto fontAwesomeLarger" onClick={toggleFavorite}>
           <i
           className={
             saved
-              ? `fa-solid fa-heart-circle-minus mx-1`
-              : `fa-solid fa-heart-circle-plus mx-1`
+              ? `fa-solid fa-heart-circle-minus text-warning fontAwesomeLarger mx-1`
+              : `fa-solid fa-heart-circle-plus text-dark fontAwesomeLarger mx-1`
           }
           id="favourited"
-          onClick={toggleFavorite}
+
         >
 
         </i>
