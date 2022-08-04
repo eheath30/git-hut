@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect, useContext } from "react";
 import Form from "../../components/searchform/SearchForm";
 import UserCard from '../../components/userCard/UserCard'
-import RepoCard from '../../components/repoCard/RepoCard'
+import RepoCard from '../../components/repocard/RepoCard'
 import Pagination from '../../components/Pagination/pagination'
 import { UserContext } from "../../UserContext"
 
