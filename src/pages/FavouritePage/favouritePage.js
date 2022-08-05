@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { useSelector } from "react-redux";
 import RepoCard from '../../components/repocard/RepoCard'
 import Pagination from '../../components/Pagination/pagination'
-
+import img from '../HistoryPage/img.jpg';
 export default function FavouritePage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [reposPerPage] = useState(5);
@@ -50,7 +50,7 @@ export default function FavouritePage() {
 
   return (
     <div className="col-lg-6 col-md-8 col-sm-10 mx-auto px-4 py-2">
-      <h1 className="display-3 text-center mx-auto my-2">Favourite Repos...</h1>
+      <h1 className="display-3 text-center mx-auto my-2">Favourited Repos...</h1>
             <div className="-fluid mt-3">
               <div className="input-group">
                 <div className="form-outline mx-auto my-3 d-flex">
@@ -68,7 +68,8 @@ export default function FavouritePage() {
                 </div>
               </div>
               <section className="row row-cols-1">
-                {searchTerm ? filteredRepos() : renderRepos()}
+                {favouritesList.length === 0 ? <img className='img-responsive w-25 mx-auto my-5' src={img}></img> : searchTerm ? filteredRepos() : renderRepos()}
+
               </section>
               {searchTerm === "" &&
                 <div className="pagination d-flex justify-content-center">

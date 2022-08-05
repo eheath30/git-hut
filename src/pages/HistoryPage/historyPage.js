@@ -1,16 +1,22 @@
-import React from "react";
-import SearchForm from '../../components/searchform/SearchForm'
-import { Link } from 'react-router-dom'
+import React, { useState, useEffect, useContext } from "react";
+import img from './img.jpg';
+import { HistoryContext } from '../../HistoryContext'
 
 export default function HistoryPage() {
+  const [history, setHistory] = useContext(HistoryContext)
 
-  const userHistory = JSON.parse(localStorage.getItem("UserHistory"));
+  console.log(history)
+
 
   return (
     <section className='container justify-content-center mx-auto'>
-      <h1 className='display-3 text-center my-4'>{userHistory == '' ? 'Nothing to Show' : 'HISTORY PAGE'}</h1>
+      <h1 className='display-3 text-center my-4'>{history == '' ?
+        <div className='text-center'>
+          <h1 className="display-1">Nothing to Show</h1>
+          <img className='img-responsive w-25 mt-4' alt="git hut logo" src={img}></img>
+        </div> : 'HISTORY PAGE'}</h1>
       <div>
-        {userHistory != undefined ? userHistory.map(({ time, userH }) => {
+        {history != undefined ? history.map(({ time, userH }) => {
           return (
             <div className="col-auto mb-3" key={userH}>
               <div className="card" >
@@ -21,6 +27,8 @@ export default function HistoryPage() {
             </div>
           )
         }) : null}
+
+
       </div>
     </section>
   )

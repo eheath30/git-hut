@@ -5,6 +5,7 @@ import UserCard from '../../components/userCard/UserCard'
 import RepoCard from '../../components/repocard/RepoCard'
 import Pagination from '../../components/Pagination/pagination'
 import { UserContext } from "../../UserContext"
+import { HistoryContext } from '../../HistoryContext'
 
 export default function MainPage() {
   const [user, setUser] = useContext(UserContext);
@@ -14,12 +15,11 @@ export default function MainPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [reposPerPage] = useState(5);
   const [searchTerm, setSearchTerm] = useState("");
+  const [history, setHistory] = useContext(HistoryContext)
 
   useEffect(() => {
-    localStorage.setItem('UserHistory', JSON.stringify(userHistory));
+    setHistory(userHistory)
   }, [user])
-
-
 
   useEffect(() => {
     const fetchUser = async () => {
