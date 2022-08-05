@@ -15,7 +15,11 @@ export default function MainPage() {
   const [reposPerPage] = useState(5);
   const [searchTerm, setSearchTerm] = useState("");
 
-  localStorage.setItem('UserHistory', JSON.stringify(userHistory));
+  useEffect(() => {
+    localStorage.setItem('UserHistory', JSON.stringify(userHistory));
+  }, [user])
+
+
 
   useEffect(() => {
     const fetchUser = async () => {

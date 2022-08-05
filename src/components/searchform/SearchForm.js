@@ -8,7 +8,7 @@ export default function SearchForm(props) {
     const today = new Date();
     const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
     const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    const dateTime = date + ' ' + time;
+    const dateTime = `search on ${date.split('-').reverse().join('/')} at ${time.slice(0,4)}`
 
     function handleSearchTerm(e) {
         let userName = e.target.value;
