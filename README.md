@@ -2,7 +2,7 @@
 ### An github repo search engine
 Search and favourite repos by github username.
 
-### Live site at: `https://git-hut.netlify.app/`
+### Live site at: `[https://git-hut.netlify.app/](https://git-hut.netlify.app/ "https://git-hut.netlify.app/")`
 
 ##### This project was built using ReactJS
 
